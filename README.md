@@ -8,7 +8,7 @@ DetectTor uses Tor's exit node list to determine if the request is a Tor exit no
 Install the package:
 
 ```bash
-npm install detecttor
+npm install @bestcodes/detecttor
 ```
 
 Import and use a function:
