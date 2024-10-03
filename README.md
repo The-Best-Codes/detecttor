@@ -1,4 +1,4 @@
-## DetectTor
+# DetectTor
 
 DetectTor is a simple npm library to detect if a request originated from Tor Browser.
 DetectTor uses Tor's exit node list to determine if the request is a Tor exit node.
