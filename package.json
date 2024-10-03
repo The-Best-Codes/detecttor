@@ -1,8 +1,8 @@
 {
   "name": "detecttor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
-  "description": "Detect TOR Browser, server side or client side",
+  "description": "Detect TOR Browser, server side",
   "scripts": {
     "build:esm": "tsc --project tsconfig.esm.json || true",
     "minify:esm": "find dist/esm -name '*.js' -type f -exec terser {} --compress --mangle --output {} \\;",
