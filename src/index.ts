@@ -24,10 +24,10 @@ export async function getIpAddress(params?: {
   const overrideUrl = params?.overrideUrl || undefined;
   try {
     const url = overrideUrl || "https://postman-echo.com/ip";
-    const urlRegex =
-      /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-    if (!urlRegex.test(url)) {
-      throw new Error("Invalid URL");
+    try {
+      const urlTest = new URL(url);
+    } catch (error) {
+      throw new Error(`Invalid URL: ${url}`);
     }
     const { data } = await axios.get(url);
     return data.ip;
