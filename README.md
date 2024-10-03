@@ -14,7 +14,7 @@ npm install @bestcodes/detecttor
 Import and use a function:
 
 ```typescript
-import isIpTor, { amIUsingTor } from "detecttor";
+import isIpTor, { amIUsingTor } from "@bestcodes/detecttor";
 
 isIpTor("89.0.142.86")
   .then((result) => {
