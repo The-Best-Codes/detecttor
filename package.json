@@ -1,0 +1,54 @@
+{
+  "name": "detecttor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Detect TOR Browser, server side or client side",
+  "scripts": {
+    "build:esm": "tsc --project tsconfig.esm.json || true",
+    "minify:esm": "find dist/esm -name '*.js' -type f -exec terser {} --compress --mangle --output {} \\;",
+    "build": "npm run build:esm && npm run minify:esm",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Best-Codes/detecttor.git"
+  },
+  "keywords": [
+    "tor",
+    "browser",
+    "ip",
+    "address",
+    "security",
+    "block"
+  ],
+  "author": "BestCodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/The-Best-Codes/detecttor/issues"
+  },
+  "homepage": "https://github.com/The-Best-Codes/detecttor#readme",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "axios": "^1.7.7",
+    "esm": "^3.2.25",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "terser": "^5.34.1",
+    "typescript": "^5.6.2",
+    "url": "^0.11.4"
+  }
+}
