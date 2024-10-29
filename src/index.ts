@@ -54,6 +54,25 @@ const getIpListOnline = async (params?: { update?: boolean }) => {
     try {
       if (update) {
         const filePath = torIpFilePath;
+        // Split the data into lines and validate each IP
+        const ips = data
+          .split("\n")
+          .filter((line: string) => line.trim() !== "");
+        const validIPs = ips.every((ip: string) => {
+          const parts = ip.split(".");
+          return (
+            parts.length === 4 &&
+            parts.every((part: string) => {
+              const num = parseInt(part, 10);
+              return num >= 0 && num <= 255;
+            })
+          );
+        });
+
+        if (!validIPs) {
+          throw new Error("Invalid IP list");
+        }
+
         await fs.promises.writeFile(filePath, data);
         const date = new Date().getTime();
         const timestampFile = timestampFilePath;

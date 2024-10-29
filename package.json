@@ -1,6 +1,6 @@
 {
   "name": "@bestcodes/detecttor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "Detect TOR Browser, server side",
   "scripts": {
@@ -42,13 +42,13 @@
   },
   "homepage": "https://github.com/The-Best-Codes/detecttor#readme",
   "devDependencies": {
-    "@types/node": "^22.7.4",
+    "@types/node": "^22.8.2",
     "axios": "^1.7.7",
     "esm": "^3.2.25",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
-    "terser": "^5.34.1",
-    "typescript": "^5.6.2",
+    "terser": "^5.36.0",
+    "typescript": "^5.6.3",
     "url": "^0.11.4"
   }
 }
