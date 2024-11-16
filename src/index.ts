@@ -1,4 +1,3 @@
-import axios from "axios";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
@@ -8,6 +7,10 @@ const __dirname = dirname(__filename);
 
 const torIpFilePath = path.join(__dirname, "torlist.txt");
 const timestampFilePath = path.join(__dirname, "torlist.txt.timestamp");
+
+interface IpResponse {
+  ip: string;
+}
 
 /**
  * Retrieves the current IP address of the user.
@@ -29,7 +32,8 @@ export async function getIpAddress(params?: {
     } catch (error) {
       throw new Error(`Invalid URL: ${url}`);
     }
-    const { data } = await axios.get(url);
+    const response = await fetch(url);
+    const data = (await response.json()) as IpResponse;
     return data.ip;
   } catch (error) {
     console.error("Error fetching IP address:", error);
@@ -50,7 +54,8 @@ const getIpListOnline = async (params?: { update?: boolean }) => {
   const update = params?.update ?? false;
   try {
     const url = "https://check.torproject.org/torbulkexitlist";
-    const { data } = await axios.get(url);
+    const response = await fetch(url);
+    const data = await response.text();
     try {
       if (update) {
         const filePath = torIpFilePath;

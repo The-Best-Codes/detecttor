@@ -31,17 +31,17 @@ export declare function getIpAddress(params?: {
  */
 export declare function getIpList(params?: {
     update?: boolean | string;
-}): Promise<any>;
+}): Promise<string[]>;
 /**
  * Checks if a given IP address is a Tor exit node.
  *
  * @param {string} ip - The IP address to check
  * @returns {Promise<boolean>} Whether the IP address is a Tor exit node
  */
-export default function isIpTor(ip: string): Promise<any>;
+export default function isIpTor(ip: string): Promise<boolean>;
 /**
  * Checks if the current user is using Tor.
  *
  * @returns {Promise<boolean>} Whether the user is using Tor
  */
-export declare function amIUsingTor(): Promise<any>;
+export declare function amIUsingTor(): Promise<boolean>;

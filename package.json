@@ -1,12 +1,13 @@
 {
   "name": "@bestcodes/detecttor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "Detect TOR Browser, server side",
   "scripts": {
     "build:esm": "tsc --project tsconfig.esm.json || true",
-    "minify:esm": "find dist/esm -name '*.js' -type f -exec terser {} --compress --mangle --output {} \\;",
-    "build": "npm run build:esm && npm run minify:esm",
+    "minify:esm": "find dist/esm -name '*.js' -type f -exec terser {} --compress passes=3,pure_getters,toplevel,unsafe_math,unsafe_methods,unsafe_proto,unsafe_undefined --mangle --module --output {} \\;",
+    "prebuild": "rm -rf dist",
+    "build": "npm run prebuild && npm run build:esm && npm run minify:esm",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -42,13 +43,7 @@
   },
   "homepage": "https://github.com/The-Best-Codes/detecttor#readme",
   "devDependencies": {
-    "@types/node": "^22.8.2",
-    "axios": "^1.7.7",
-    "esm": "^3.2.25",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "terser": "^5.36.0",
-    "typescript": "^5.6.3",
-    "url": "^0.11.4"
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
   }
 }
