@@ -10,6 +10,50 @@
 export declare function getIpAddress(params?: {
     overrideUrl?: string;
 }): Promise<string>;
+export interface IpListPersistence {
+    /**
+     * Retrieves the IP list from persistence.
+     * @returns Promise<string[]> The list of IPs or an empty array if not found/error.
+     */
+    getIpList(): Promise<string[]>;
+    /**
+     * Saves the IP list to persistence.
+     * @param ipList string[] The list of IPs to save.
+     * @returns Promise<void>
+     */
+    saveIpList(ipList: string[]): Promise<void>;
+    /**
+     * Retrieves the timestamp of the last update.
+     * @returns Promise<number> The timestamp or 0 if not found/error.
+     */
+    getTimestamp(): Promise<number>;
+    /**
+     * Saves the timestamp of the last update.
+     * @param timestamp number The timestamp to save.
+     * @returns Promise<void>
+     */
+    saveTimestamp(timestamp: number): Promise<void>;
+}
+export declare class FileSystemPersistence implements IpListPersistence {
+    private torIpFilePath;
+    private timestampFilePath;
+    constructor(options?: {
+        torIpFilePath?: string;
+        timestampFilePath?: string;
+    });
+    getIpList(): Promise<string[]>;
+    saveIpList(ipList: string[]): Promise<void>;
+    getTimestamp(): Promise<number>;
+    saveTimestamp(timestamp: number): Promise<void>;
+}
+export declare class InMemoryPersistence implements IpListPersistence {
+    private ipList;
+    private timestamp;
+    getIpList(): Promise<string[]>;
+    saveIpList(ipList: string[]): Promise<void>;
+    getTimestamp(): Promise<number>;
+    saveTimestamp(timestamp: number): Promise<void>;
+}
 /**
  * Retrieves the list of IP addresses of Tor exit nodes.
  *
@@ -27,21 +71,26 @@ export declare function getIpAddress(params?: {
  *
  * @param {Object} [params] - Optional parameters
  * @param {boolean|string} [params.update] - The update strategy
+ * @param {IpListPersistence} [params.persistence] -  Persistence mechanism.  Defaults to FileSystemPersistence.
  * @returns {Promise<string[]>} The list of IP addresses
  */
 export declare function getIpList(params?: {
     update?: boolean | string;
+    persistence?: IpListPersistence;
 }): Promise<string[]>;
 /**
  * Checks if a given IP address is a Tor exit node.
  *
  * @param {string} ip - The IP address to check
+ * @param {IpListPersistence} [persistence] - The persistence mechanism to use. Defaults to FileSystemPersistence.
  * @returns {Promise<boolean>} Whether the IP address is a Tor exit node
  */
-export default function isIpTor(ip: string): Promise<boolean>;
+export declare function isIpTor(ip: string, persistence?: IpListPersistence): Promise<boolean>;
 /**
  * Checks if the current user is using Tor.
  *
+ * @param {IpListPersistence} [persistence] - The persistence mechanism to use. Defaults to FileSystemPersistence.
  * @returns {Promise<boolean>} Whether the user is using Tor
  */
-export declare function amIUsingTor(): Promise<boolean>;
+export declare function amIUsingTor(persistence?: IpListPersistence): Promise<boolean>;
+export default isIpTor;
