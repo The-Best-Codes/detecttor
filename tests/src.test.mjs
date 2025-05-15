@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import isIpTor, { amIUsingTor, getIpList } from "../dist/esm/index.js";
+import isIpTor, { amIUsingTor, getIpList } from "../src/index";
 
 describe("detecttor", () => {
   it("amIUsingTor should return a boolean", async () => {
