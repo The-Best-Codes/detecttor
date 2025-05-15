@@ -13,12 +13,12 @@ describe("detecttor", () => {
     expect(typeof result).toBe("boolean");
   });
 
-  it("getIpList should return an array of IP addresses", async () => {
+  it("getIpList should return a Set of IP addresses", async () => {
     const result = await getIpList();
-    expect(Array.isArray(result)).toBe(true);
-    // Optionally, check if array elements are strings (basic validation)
-    if (result.length > 0) {
-      expect(typeof result[0]).toBe("string");
+    expect(result instanceof Set).toBe(true);
+    if (result.size > 0) {
+      const firstElement = result.values().next().value;
+      expect(typeof firstElement).toBe("string");
     }
   });
 });
