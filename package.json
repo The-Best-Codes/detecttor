@@ -1,6 +1,6 @@
 {
   "name": "@bestcodes/detecttor",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "description": "Detect TOR Browser, server side",
   "scripts": {
