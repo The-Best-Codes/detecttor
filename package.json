@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/The-Best-Codes/detecttor#readme",
   "devDependencies": {
-    "@types/node": "^22.15.18",
+    "@types/node": "^24.0.3",
     "terser": "^5.39.2",
     "typescript": "^5.8.3"
   }
